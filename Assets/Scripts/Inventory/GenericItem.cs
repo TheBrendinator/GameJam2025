@@ -1,6 +1,8 @@
 using UnityEngine;
 
-public abstract class GenericItem : MonoBehaviour 
+// All of the shared variables can go in here
+// This can VERY easily be split into different sub-classes for item types later
+public abstract class GenericItem : MonoBehaviour
 {
     public string itemName;
     public Sprite itemIcon;

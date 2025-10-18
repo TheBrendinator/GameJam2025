@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class ItemManager : MonoBehaviour
 {
     public Inventory inventory;
     public BasicAxe basicAxeModel;
