@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2de5e7ee4dbd4cf4bbddfadba4c8c747, type: 3}
       propertyPath: m_Name
-      value: Axe_
+      value: Axe
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -80,3 +80,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c60b7ecf96f26b54dbfdde1d11583613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Axe
+  itemName: Basic Axe
+  itemIcon: {fileID: 0}
+  isConsumable: 0
+  dayItem: 1
+  nightItem: 0
+  attackDamage: 10
+  attackSpeed: 0.25
+  defense: 0
+  quantity: 0

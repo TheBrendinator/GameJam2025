@@ -20,6 +20,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    // Currently just prints to console - should be changed to a UI version
     public void ShowInventory()
     {
         foreach (var item in items)

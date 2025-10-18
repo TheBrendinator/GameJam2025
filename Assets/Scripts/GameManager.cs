@@ -1,21 +1,19 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public Inventory inventory;
-    public Axe axe = new Axe();
-
-
-    public GenericItem[] itemList;
+    public BasicAxe basicAxeModel;
+    private List<GenericItem> globalItemList = new List<GenericItem>();
+    private Quaternion itemRotation = Quaternion.identity;
+    private Vector3 itemPosition = new Vector3(0, 0, 0);
 
     void Start()
     {
-        Vector3 itemPosition = new Vector3(0, 0, 0);
-        Quaternion itemRotation = Quaternion.identity;
-        Axe newAxe = Instantiate(axe, itemPosition, itemRotation);
-        InventoryItem newnewAxe = new InventoryItem("Axe", null, newAxe);
+        globalItemList.Add(Instantiate(basicAxeModel, itemPosition, itemRotation));
 
-        inventory.AddItem(newnewAxe);
+        inventory.AddItem(new InventoryItem(globalItemList[0]));
         inventory.ShowInventory();
     }
 }

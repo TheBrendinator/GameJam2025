@@ -1149,7 +1149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   inventory: {fileID: 711557754}
-  axe: {fileID: 2626073519850029967, guid: 1c1a2631a4ee0654b8ab39f81c95c0e7, type: 3}
+  axeModel: {fileID: 2626073519850029967, guid: 1c1a2631a4ee0654b8ab39f81c95c0e7, type: 3}
+  itemList: []
 --- !u!4 &2016264962
 Transform:
   m_ObjectHideFlags: 0
