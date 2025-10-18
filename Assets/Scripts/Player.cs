@@ -1,4 +1,5 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -24,6 +25,11 @@ public class Player : MonoBehaviour
     public bool isDashing;
     private float regularSpeed;
     public float maxSpeed;
+
+    public float maxSlopeAngle;
+    private RaycastHit slopeHit;
+    public ParticleSystem ps;
+    public CinemachineCamera cam;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -40,6 +46,7 @@ public class Player : MonoBehaviour
         if (isDashing)
         {
             maxSpeedClamp();
+            ps.Play();
         }
         else
         {
@@ -49,12 +56,16 @@ public class Player : MonoBehaviour
         {
             rb.linearDamping = groundDrag;
             Invoke(nameof(dashCooldown), 1f);
-            Invoke(nameof(resetDash), 0.2f);
 
         }
         else
         {
             rb.linearDamping = 0;
+        }
+
+        if (cam.Lens.FieldOfView > 60)
+        {
+            cam.Lens.FieldOfView -= 0.2f;
         }
         
     }
@@ -81,6 +92,11 @@ public class Player : MonoBehaviour
             dash();
             isDashing = true;
             canDash = false;
+        }
+
+        if (OnSlope())
+        {
+            rb.AddForce(GetSlopeMoveDirection() * speed * 20f, ForceMode.Force);
         }
     }
 
@@ -130,6 +146,7 @@ public class Player : MonoBehaviour
 
     private void dash()
     {
+        cam.Lens.FieldOfView += 15;
         if (rb.linearVelocity.x > 0 || rb.linearVelocity.y > 0)
         {
             rb.AddForce(moveDir * dashForce, ForceMode.Impulse);
@@ -146,5 +163,22 @@ public class Player : MonoBehaviour
     private void dashCooldown()
     {
         canDash = true;
+    }
+
+    private bool OnSlope()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < maxSlopeAngle && angle != 0;
+        }
+
+        return false;
+
+
+    }
+    private Vector3 GetSlopeMoveDirection()
+    {
+        return Vector3.ProjectOnPlane(moveDir, slopeHit.normal).normalized;
     }
 }
