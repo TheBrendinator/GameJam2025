@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public int health;
+    public int health { get; set; } = 100;
     public NavMeshAgent agent;
     public TestPlayer player;
 
