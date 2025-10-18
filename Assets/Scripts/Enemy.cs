@@ -3,33 +3,32 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    // public int health;
-    // public NavMeshAgent agent;
-    // public Player player;
+    public int health;
+    public NavMeshAgent agent;
+    public TestPlayer player;
 
-    // void Start()
-    // {
+    void Start()
+    {
+    }
 
-    // }
+    void Update()
+    {
+        if (player != null)
+        {
+            agent.SetDestination(player.transform.position);
+        }
+    }
 
-    // void Update()
-    // {
-    //     if (player != null)
-    //     {
-    //         agent.SetDestination(player.position);
-    //     }
-    // }
+    void TakeDamage() {
+        health -= player.damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
 
-    // void TakeDamage() {
-    //     health -= player.damage;
-    //     if (health <= 0)
-    //     {
-    //         Die();
-    //     }
-    // }
-
-    // void Die()
-    // {
-    //     Destroy(gameObject);
-    // }
+    void Die()
+    {
+        Destroy(gameObject);
+    }
 }

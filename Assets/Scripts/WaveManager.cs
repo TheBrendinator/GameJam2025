@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    //private int waveNumber = 1;
-    //private int enemiesThisWave = 1;
+    public int waveNumber { get; set; } = 1;
+    public int enemiesThisWave { get; set; } = 10;
 
     void Start()
     {

@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public Behaviour waveManager;
+    public WaveManager waveManager;
     public Enemy[] enemies;
 
-    private int spawnRadius = 50;
+    private int spawnRadius = 40;
+    private bool spawned = false;
 
     void Start()
     {
@@ -13,7 +14,15 @@ public class Spawner : MonoBehaviour
 
     void Update()
     {
-        spawnEnemy();
+        if (!spawned)
+        {
+            spawned = true;
+
+            for (int i = 0; i < waveManager.enemiesThisWave; i++)
+            {
+                spawnEnemy();
+            }
+        }
     }
 
     void spawnEnemy()
