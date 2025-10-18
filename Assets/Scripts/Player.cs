@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public bool isDashing;
     private float regularSpeed;
     public float maxSpeed;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
