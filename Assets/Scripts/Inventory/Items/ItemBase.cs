@@ -8,4 +8,8 @@ public abstract class ItemBase : ScriptableObject
 
     public GameObject model;
     public string description;
+
+    public bool dayItem;
+
+    public bool nightItem;
 }

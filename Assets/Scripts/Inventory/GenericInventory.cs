@@ -20,29 +20,6 @@ public class GenericInventory : ScriptableObject
             }
         }
 
-        Debug.log("Inventory full");
         return false;
-    }
-
-    public bool DropItem(int index)
-    {
-        try
-        {
-            // Creates object and copies item data to it
-            GameObject droppedItem = new GameObject();
-            droppedItem.AddComponent<Rigidbody>();
-            droppedItem.AddComponent<ItemInstanceContainer>().item = items[index];
-            GameObject itemModel = Instantiate(items[index].model, droppedItem.transform);
-
-            items.RemoveAt(index);
-        }
-
-        catch
-        {
-            Debug.log("Failed to drop item... How?");
-            return false;
-        }
-
-        return true;
     }
 }
