@@ -321,13 +321,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0978ffc70895eed4ab6ae05b1083be38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  speed: 7
+  speed: 12
   groundDrag: 5
   playerHeight: 2
   ground:
     serializedVersion: 2
     m_Bits: 64
+  grounded: 0
   orientation: {fileID: 1788177655}
+  jumpForce: 10
+  airMultiplier: 0.4
+  canJump: 1
+  jumpCooldown: 0.25
+  dashForce: 25
+  isDashing: 0
+  maxSpeed: 25
 --- !u!1 &731839430
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,7 +761,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: b4cee89c19db97e43a615ef95d717ffd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
