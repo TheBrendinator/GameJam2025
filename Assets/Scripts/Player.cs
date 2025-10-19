@@ -30,6 +30,9 @@ public class Player : MonoBehaviour
     private RaycastHit slopeHit;
     public ParticleSystem ps;
     public CinemachineCamera cam;
+    private bool isJumping;
+    private bool isLand;
+    public Animator animator;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -39,6 +42,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        animator.SetFloat("speed", Mathf.Abs(horizontal));
+        animator.SetBool("Jump", isJumping);
+        animator.SetBool("Landing", isLand);
+        animator.SetBool("Grounded", grounded);
+        
         
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
         Inputs();
@@ -46,7 +54,7 @@ public class Player : MonoBehaviour
         if (isDashing)
         {
             maxSpeedClamp();
-            ps.Play();
+            
         }
         else
         {
@@ -54,9 +62,17 @@ public class Player : MonoBehaviour
         }
         if (grounded)
         {
+            
             rb.linearDamping = groundDrag;
+            Invoke(nameof(resetDash), 0.2f);
             Invoke(nameof(dashCooldown), 1f);
 
+        }
+        if(isJumping && grounded)
+        {
+            isLand = true;
+            
+            Invoke(nameof(landingCooldown), 0.1f);
         }
         else
         {
@@ -82,6 +98,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && grounded && canJump)
         {
             canJump = false;
+            isJumping = true;
             Jump();
             Invoke(nameof(resetJump), jumpCooldown);
         }
@@ -89,6 +106,7 @@ public class Player : MonoBehaviour
         {
             CancelInvoke(nameof(dashCooldown));
             CancelInvoke(nameof(resetDash));
+            ps.Play();
             dash();
             isDashing = true;
             canDash = false;
@@ -133,7 +151,9 @@ public class Player : MonoBehaviour
         }
     }
     private void Jump()
+
     {
+        isJumping = true;
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
@@ -142,6 +162,7 @@ public class Player : MonoBehaviour
     private void resetJump()
     {
         canJump = true;
+        isJumping = false;
     }
 
     private void dash()
@@ -180,5 +201,10 @@ public class Player : MonoBehaviour
     private Vector3 GetSlopeMoveDirection()
     {
         return Vector3.ProjectOnPlane(moveDir, slopeHit.normal).normalized;
+    }
+
+    private void landingCooldown()
+    {
+        isLand = false;
     }
 }
