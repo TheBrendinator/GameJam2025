@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public int damage { get; set; } = 50; // Remove this before merging!
     public float speed;
     public float groundDrag;
     public float playerHeight;
