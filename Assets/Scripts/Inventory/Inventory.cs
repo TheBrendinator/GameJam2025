@@ -3,29 +3,55 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public List<InventoryItem> items = new List<InventoryItem>();
+    public List<ItemSO> items = new List<ItemSO>();
+    public ItemSO equippedItem;
+    public GameObject temp;
 
-    public void AddItem(InventoryItem item)
+    public void AddItem(ItemSO item)
     {
         items.Add(item);
-        Debug.Log(item.itemName + " added to inventory.");
+        //Destroy(item);
+        // Debug.Log(item.itemName + " added to inventory.");
     }
 
-    public void RemoveItem(InventoryItem item)
+    public void RemoveItem(ItemSO item)
     {
         if (items.Contains(item))
         {
             items.Remove(item);
-            Debug.Log(item.itemName + " removed from inventory.");
         }
     }
 
-    // Currently just prints to console - should be changed to a UI version
-    public void ShowInventory()
+    public void EquipItem(ItemSO item)
     {
-        foreach (var item in items)
+        if (items.Contains(item))
         {
-            Debug.Log("Item: " + item.itemName);
+            equippedItem = item;
         }
+    }
+    
+    public void UnequipItem(ItemSO item)
+    {
+        equippedItem = null;
+    }
+
+    public void UpdateEquippedPosition()
+    {
+        try
+        {
+            GameObject playerHand = GameObject.Find("MCH-upper_arm_ik_target.L_end");
+            Destroy(temp);
+            Vector3 position = new Vector3(playerHand.transform.position.x, playerHand.transform.position.y, playerHand.transform.position.z);
+            temp = Instantiate(equippedItem.itemPrefab, position, playerHand.transform.rotation);
+        }
+        catch
+        {
+            temp = null;
+        }
+    }
+
+    public void Update()
+    {
+        UpdateEquippedPosition();
     }
 }
