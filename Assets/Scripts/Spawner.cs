@@ -39,7 +39,16 @@ public class Spawner : MonoBehaviour
 
     Vector3 getRandomPositionInCircle()
     {
-        Vector2 spawnPosition = Random.insideUnitCircle * spawnRadius;
-        return new Vector3(spawnPosition.x, 0f, spawnPosition.y) + transform.position;
+        Vector2 positionInCircle = Vector2.zero;
+        Vector3 spawnPosition = Vector3.zero;
+        float distance = 0f;
+        do
+        {
+            positionInCircle = Random.insideUnitCircle * spawnRadius;
+            spawnPosition = new Vector3(positionInCircle.x, 0f, positionInCircle.y);
+            distance = Vector3.Distance(spawnPosition, player.transform.position);
+        }
+        while (distance < 10f);
+        return spawnPosition + transform.position;
     }
 }
