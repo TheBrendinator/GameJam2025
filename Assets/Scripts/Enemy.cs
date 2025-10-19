@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent agent;
     public Rigidbody body;
     public Player player;
+    public Billboard billboard;
+    public HealthBar healthBar;
 
     public int health { get; set; } = 100;
     private float detectionRange = 5f;
@@ -16,6 +18,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         agent.speed = Random.Range(1, 15);
+        healthBar.setMaxHealth(health);
     }
 
     void Update()
@@ -34,6 +37,7 @@ public class Enemy : MonoBehaviour
     void takeDamage()
     {
         health -= player.damage;
+        healthBar.setHealth(health);
         if (health <= 0)
         {
             die();

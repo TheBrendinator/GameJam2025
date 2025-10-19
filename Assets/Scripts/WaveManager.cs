@@ -9,7 +9,7 @@ public class WaveManager : MonoBehaviour
     public int enemiesThisWave { get; set; } = 1;
     
     private int killCounter = 0;
-    private float intermissionTime = 10f;
+    private float intermissionTime = 2f;
 
     void Start()
     {
@@ -23,7 +23,6 @@ public class WaveManager : MonoBehaviour
 
     void intermission()
     {
-        if (waveNumber < 2) return;
         StartCoroutine(intermissionWait());
     }
 

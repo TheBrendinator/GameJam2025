@@ -5,6 +5,7 @@ public class Spawner : MonoBehaviour
     public WaveManager waveManager;
     public Enemy[] enemies;
     public Player player;
+    public Transform cam;
 
     private int spawnRadius = 40;
 
@@ -35,6 +36,7 @@ public class Spawner : MonoBehaviour
 
         if (player != null) newEnemy.player = player;
         if (waveManager != null) newEnemy.waveManager = waveManager;
+        newEnemy.billboard.cam = cam;
     }
 
     Vector3 getRandomPositionInCircle()
