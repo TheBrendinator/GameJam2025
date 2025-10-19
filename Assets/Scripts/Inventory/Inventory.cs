@@ -3,29 +3,24 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public List<InventoryItem> items = new List<InventoryItem>();
+    public List<ItemSO> items = new List<ItemSO>();
 
-    public void AddItem(InventoryItem item)
+    public void AddItem(ItemSO item)
     {
         items.Add(item);
-        Debug.Log(item.itemName + " added to inventory.");
+        //Destroy(item);
+        // Debug.Log(item.itemName + " added to inventory.");
     }
 
-    public void RemoveItem(InventoryItem item)
+    public void RemoveItem(ItemSO item)
     {
         if (items.Contains(item))
         {
             items.Remove(item);
-            Debug.Log(item.itemName + " removed from inventory.");
         }
     }
 
-    // Currently just prints to console - should be changed to a UI version
-    public void ShowInventory()
-    {
-        foreach (var item in items)
-        {
-            Debug.Log("Item: " + item.itemName);
-        }
+    public void DropItem(int index) {
+        
     }
 }
