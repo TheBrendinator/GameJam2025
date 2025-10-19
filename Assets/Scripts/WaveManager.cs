@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class WaveManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class WaveManager : MonoBehaviour
     public int enemiesThisWave { get; set; } = 1;
     
     private int killCounter = 0;
+    private float intermissionTime = 10f;
 
     void Start()
     {
@@ -17,6 +19,18 @@ public class WaveManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    void intermission()
+    {
+        if (waveNumber < 2) return;
+        StartCoroutine(intermissionWait());
+    }
+
+    IEnumerator intermissionWait()
+    {
+        yield return new WaitForSeconds(intermissionTime);
+        nextWave();
     }
 
     void nextWave()
@@ -30,6 +44,6 @@ public class WaveManager : MonoBehaviour
     public void killEnemy()
     {
         killCounter++;
-        if (killCounter >= enemiesThisWave) nextWave();
+        if (killCounter >= enemiesThisWave) intermission();
     }
 }
