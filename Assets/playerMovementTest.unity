@@ -323,7 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   speed: 12
   groundDrag: 5
-  playerHeight: 2
+  playerHeight: 8
   ground:
     serializedVersion: 2
     m_Bits: 64
@@ -5713,15 +5713,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ba4eb694e3213a4f902c8253c0f9d3d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ba4eb694e3213a4f902c8253c0f9d3d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ba4eb694e3213a4f902c8253c0f9d3d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ba4eb694e3213a4f902c8253c0f9d3d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5729,7 +5729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ba4eb694e3213a4f902c8253c0f9d3d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.88
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ba4eb694e3213a4f902c8253c0f9d3d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5765,7 +5765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ba4eb694e3213a4f902c8253c0f9d3d, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8648741920362925993, guid: 1ba4eb694e3213a4f902c8253c0f9d3d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
