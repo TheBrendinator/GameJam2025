@@ -1,6 +1,9 @@
 using System;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 public class Player : MonoBehaviour
 {
@@ -32,6 +35,7 @@ public class Player : MonoBehaviour
     public CinemachineCamera cam;
     private bool isJumping;
     private bool isLand;
+    private bool isAttacking;
     public Animator animator;
     private void Start()
     {
@@ -46,6 +50,9 @@ public class Player : MonoBehaviour
         animator.SetBool("Jump", isJumping);
         animator.SetBool("Landing", isLand);
         animator.SetBool("Grounded", grounded);
+        Vector3 flatVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+        animator.SetFloat("Magnitude", Mathf.Abs(flatVelocity.magnitude));
+        animator.SetBool("Attacking", isAttacking);
         
         
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
@@ -115,6 +122,15 @@ public class Player : MonoBehaviour
         if (OnSlope())
         {
             rb.AddForce(GetSlopeMoveDirection() * speed * 20f, ForceMode.Force);
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!isAttacking)
+            {
+                isAttacking = true;
+                Invoke(nameof(attackCooldown), 0.4f);
+            }
         }
     }
 
@@ -206,5 +222,10 @@ public class Player : MonoBehaviour
     private void landingCooldown()
     {
         isLand = false;
+    }
+
+    private void attackCooldown()
+    {
+        isAttacking = false;
     }
 }
