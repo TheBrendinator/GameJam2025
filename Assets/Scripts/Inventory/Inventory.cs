@@ -39,9 +39,10 @@ public class Inventory : MonoBehaviour
     {
         try
         {
-            GameObject playerHand = GameObject.Find("hand_ik.L");
+            GameObject playerHand = GameObject.Find("MCH-upper_arm_ik_target.L_end");
             Destroy(temp);
-            temp = Instantiate(equippedItem.itemPrefab, playerHand.transform.position, playerHand.transform.rotation);
+            Vector3 position = new Vector3(playerHand.transform.position.x, playerHand.transform.position.y, playerHand.transform.position.z);
+            temp = Instantiate(equippedItem.itemPrefab, position, playerHand.transform.rotation);
         }
         catch
         {

@@ -21,3 +21,6 @@ MonoBehaviour:
   attackSpeed: 0.5
   defense: 0
   quantity: 0
+  xOffset: 0
+  yOffset: 0
+  zOffset: 0
