@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -7,7 +8,7 @@ public class Spawner : MonoBehaviour
     public Player player;
     public Transform cam;
 
-    private int spawnRadius = 40;
+    private int spawnRadius = 50;
 
     void Start()
     {
@@ -44,10 +45,14 @@ public class Spawner : MonoBehaviour
         Vector2 positionInCircle = Vector2.zero;
         Vector3 spawnPosition = Vector3.zero;
         float distance = 0f;
-        do
-        {
+        do {
+
             positionInCircle = Random.insideUnitCircle * spawnRadius;
-            spawnPosition = new Vector3(positionInCircle.x, 0f, positionInCircle.y);
+            Ray ray = new Ray(origin: new Vector3(positionInCircle.x, 0f, positionInCircle.y), direction: Vector3.down);
+            RaycastHit hitData;
+            Physics.Raycast(ray, out hitData);
+            Vector3 hitPosition = hitData.point;
+            spawnPosition = hitPosition;
             distance = Vector3.Distance(spawnPosition, player.transform.position);
         }
         while (distance < 10f);
