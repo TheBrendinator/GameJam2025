@@ -7,8 +7,10 @@ public class ItemManager : MonoBehaviour
 
     void Start()
     {
-        ItemSO someInstance = Resources.Load("Axe") as ItemSO;
-        inventory.AddItem(someInstance);
-        inventory.EquipItem(someInstance);
+        ItemSO axe = Resources.Load("Axe") as ItemSO;
+        ItemSO sword = Resources.Load("Sword") as ItemSO;
+        inventory.AddItem(axe);
+        inventory.AddItem(sword);
+        inventory.EquipItem(axe);
     }
 }
