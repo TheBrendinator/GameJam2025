@@ -7,6 +7,8 @@ using UnityEngine.InputSystem.LowLevel;
 
 public class Player : MonoBehaviour
 {
+    public int damage { get; set; } = 50; // Add this please
+    public int health { get; set; } = 100; // ...and this
     public float speed;
     public float groundDrag;
     public float playerHeight;
@@ -41,7 +43,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-
+        
     }
 
     void Update()
